@@ -13,11 +13,12 @@
 
     
     <select name="city_id" id="" >
-        <option value="">--Escoga la ciudad--</option>
+    
+
         @foreach ($cities as $city)
         <option value="{{$city['id']}}" @if ($city->id == $client->city_id) selected @endif>{{$city['name']}}</option>
         @endforeach
-        @error('city_id')
+        @error('city_id') 
         <br>
             <small style="color:red">{{$message}}</small>
         @enderror    

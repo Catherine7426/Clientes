@@ -41,6 +41,7 @@ Route::get('/clientes/{client}',[ClientController::class,'show'])->name('cliente
 Route::get('/clientes/{client}/edit',[ClientController::class,'edit'])->name('clientes.edit');
 Route::patch('/clientes/{client}',[ClientController::class,'update'])->name('clientes.update');
 Route::delete('/clientes/{client}',[ClientController::class,'destroy'])->name('clientes.destroy');
+
 // USUARIOS
 // Route::get('/usuarios',[UserController::class])->name('users');
 

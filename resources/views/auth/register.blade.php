@@ -21,6 +21,30 @@
         
     </label><br>
 
+    
+
+    <label >
+        Cliente
+
+        <select name="" id="">
+
+            @foreach ($users as $user)
+                <option value="$user->id">{{$user->client_id}}</option>
+            @endforeach
+        </select>
+    
+        {{-- <input type="text"
+                name="name"
+                value="{{old('client_id')}}"
+                >  --}}
+                
+        @error('client_id')
+        <br>
+        <small style="color:red">{{$message}}</small>
+        @enderror  
+        
+    </label><br>
+
     <label >
         Email
     
