@@ -17,10 +17,10 @@ class RegisteredUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
-        $users = DB::table("users")->join("clients", "users.client_id", "=", "clients.id")->join("cities","clients.city_id", "=", "clients.id")->select("clients.name as client_name", "users.*","cities.name as city_name");
-    }
+    // public function index(Request $request)
+    // {
+    //     $users = DB::table("users")->join("clients", "users.client_id", "=", "clients.id")->join("cities","clients.city_id", "=", "clients.id")->select("clients.name as client_name", "users.*","cities.name as city_name");
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -41,24 +41,24 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
 
-        $users=User::all();
+        
         $request->validate([
             'name'=>['required','string','max:255'],
-            'cliente'=>['required'],
+            // 'cliente'=>['required'],
             'email'=>['required','string','email','unique:users'],
             'password'=>['required','string','min:6','confirmed',Rules\Password::defaults()]
         ]);//confirmed valida password_confirmation si es igual
 
-        User::create([
+        $user=User::create([
             'name'=>$request->name,
             'email'=>$request->email,
-            'cliente'=>$request->client_id,
+            // 'cliente'=>$request->client_id,
             'password'=>bcrypt( $request->password),
         ]);
 
         
 
-        return to_route('login',compact('user'))->with('estado','Account created');
+        return to_route('login')->with('status','Account created');
 
     }
 

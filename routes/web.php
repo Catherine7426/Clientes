@@ -10,12 +10,6 @@ use App\Mail\ContactanosMailable;
 use Illuminate\Support\Facades\Mail;
 
 
- 
-
-
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,7 +25,9 @@ use Illuminate\Support\Facades\Mail;
 //     return view('welcome');
 // });
 
-Route::view('/','home')->name('home');
+
+
+Route::view('/','home')->middleware(['auth'])->name('home');
 
 // CLIENTES
 Route::get('/clientes',[ClientController::class,'index'])->name('clientes.index');
@@ -85,4 +81,8 @@ Route::get('contactanos', function () {
 
     return "Mensaje Enviado";
 })->name('contactanos.index');
+
+  Route::get('/email/verify', function () {
+      return view('home');
+})->middleware('auth')->name('verification.notice');
 

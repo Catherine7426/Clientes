@@ -23,7 +23,7 @@
 
     
 
-    <label >
+    {{-- <label >
         Cliente
 
         <select name="" id="">
@@ -38,12 +38,12 @@
                 value="{{old('client_id')}}"
                 >  --}}
                 
-        @error('client_id')
+        {{-- @error('client_id')
         <br>
         <small style="color:red">{{$message}}</small>
         @enderror  
         
-    </label><br>
+    </label><br> --}}
 
     <label >
         Email
