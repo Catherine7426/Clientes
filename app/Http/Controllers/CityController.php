@@ -14,8 +14,8 @@ class CityController extends Controller
     public function __construct()
     
     {
-        $this->middleware('auth');
-        $this->middleware('verified');
+        // $this->middleware('auth');
+        // $this->middleware('verified');
     }
     
     /**

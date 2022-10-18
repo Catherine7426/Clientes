@@ -8,6 +8,7 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Auth\Events\Registered;
 
 
 class RegisteredUserController extends Controller
@@ -29,7 +30,7 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        //
+       // 
     }
 
     /**
@@ -56,9 +57,10 @@ class RegisteredUserController extends Controller
             'password'=>bcrypt( $request->password),
         ]);
 
-        
+        event(new Registered($user));
 
-        return to_route('login')->with('status','Account created');
+        // return to_route('login')->with('status','Account created');
+        return to_route('verification.notice');
 
     }
 

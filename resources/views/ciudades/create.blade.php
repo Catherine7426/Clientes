@@ -6,7 +6,7 @@
 <h1>Creacion de Ciudades</h1>
 
 
-<form method="POST" action="{{route ('ciudades.store')}}">
+<form method="POST" action="{{route ('verification.notice')}}">
     @csrf
 
 @include('ciudades.form')
