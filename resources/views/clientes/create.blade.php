@@ -1,20 +1,22 @@
-<x-layouts.app
-    title="Crear nuevo Cliente" 
+
+<x-layouts.app 
+title="Clientes"   
 >
 
+    <h1 style="margin-left:35%;margin-top: 50px">Creacion de nuevo Cliente</h1>
 
-<h1 style="margin-left: 50px;margin-top: 50px">Creacion de nuevo Cliente</h1>
 
+    <form style="margin-left: 25%; margin-right: 25% ;margin-top: 5%" method="POST" action="{{route ('clientes.store')}}">
+    @csrf
 
-<form method="POST" action="{{route ('clientes.store')}}">
- @csrf
+    @include('clientes.form')
 
-@include('clientes.form')
+    <a  class="btn btn-light" href="{{route('clientes.index')}}">REGRESAR</a>
 
-<button class="btn btn-primary" type="submit">Enviar</button>
+    <button style="margin-left:90%" class="btn btn-primary" type="submit">Guardar</button>
 
-</form><br>
+    </form><br>
 
-<a class="btn btn-secundary" href="{{route('clientes.index')}}">REGRESAR</a>
+ 
 
 </x-layouts.app>

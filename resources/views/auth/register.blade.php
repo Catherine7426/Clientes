@@ -2,14 +2,14 @@
     title="Registro"
 >
 
-    <h1 style="margin-left:45%;margin-top: 50px" >Registrate</h1>
+    <h1 style="margin-left:45%;margin-top: 50px;margin-botton: 20px" >Registrate</h1>
 
-    
-    <form class="form-floating" method="POST" action="{{route ('registro')}}">
+    <div class="container">
+    <form style="margin-left: 43%; margin-top: 5%"  method="POST" action="{{route ('registro')}}">
     @csrf
 
-    <div class="form-floating mb-3 ">
-    <label for="floatingInputValue">
+    <div class=""mb-3"" >
+    <label class="form-label">
         Nombre
     
         <input  class="form-control" 
@@ -27,30 +27,8 @@
     </div>
 
     
-
-    {{-- <label >
-        Cliente
-
-        <select name="" id="">
-
-            @foreach ($users as $user)
-                <option value="$user->id">{{$user->client_id}}</option>
-            @endforeach
-        </select>
-    
-        {{-- <input type="text"
-                name="name"
-                value="{{old('client_id')}}"
-                >  --}}
-                
-        {{-- @error('client_id')
-        <br>
-        <small style="color:red">{{$message}}</small>
-        @enderror  
-        
-    </label><br> --}}
-    <div class="form-floating mb-3 ">
-    <label >
+    <div class=""mb-3"">
+    <label class="form-label">
         Email
     
         <input class="form-control"
@@ -67,8 +45,8 @@
     </label>
 </div>
 
-<div class="form-floating mb-3 ">
-    <label>
+<div class=""mb-3"">
+    <label class="form-label">
         Password
     
         <input class="form-control"
@@ -86,8 +64,8 @@
 
 </div>
 
-<div class="form-floating mb-3 ">
-<label  >
+<div class=""mb-3"">
+<label class="form-label"  >
     Confirmacion Password
 
     <input class="form-control"
@@ -105,22 +83,12 @@
 </div>
 
 
-<a href="{{route('login')}}">Login</a>
+<a class="btn btn-info btn-sm" href="{{route('login')}}">Login</a>
     
-<div class="flex items-center justify-between">
-
 {{-- <a href="{{route('login')}}">REGISTRO</a> --}}
-    <button type="submit">REGISTRAR</button>
-
-</div>
+    <button type="submit"  class="btn btn-primary " >REGISTRAR</button>
 
 </form>
-
-
-
-
-
-
-
+</div>
 
 </x-layouts.app>

@@ -1,17 +1,20 @@
 <x-layouts.app
     title="Login"
 >
-    <h1>Ingreso</h1>
+<div class="container">
+    <div class="abs-center">
+    <h1 style="margin-left:45%;margin-top: 50px" >Ingreso</h1>
 
-    <form method="POST" action="{{route ('login')}}">
+    <form style="margin-left: 30%; margin-top: 5%"   method="POST" action="{{route ('login')}}">
     @csrf
 
     
-
-    <label >
+    <div class="form-group" >
+    <label class="col-lg-8 control-label">
         Email
     
-        <input type="email"
+        <input  class="form-control" 
+                type="email"
                 name="email"
                 value="{{old('email')}}"
                 > 
@@ -21,11 +24,15 @@
         <small style="color:red">{{$message}}</small>
         @enderror  
         
-    </label><br>
-    <label >
+    </label>
+    </div>
+
+    <div class="form-group">
+    <label class="col-lg-8 control-label">
         Password
     
-        <input type="password"
+        <input class="form-control"
+                type="password"
                 name="password"
                 value="{{old('password')}}"
                 > 
@@ -35,12 +42,16 @@
         <small style="color:red">{{$message}}</small>
         @enderror  
         
-    </label><br>
-</label><br>
-<label >
+    </label>
+</div>
+
+<div class="form-group">
+<label class="col-lg-8 control-label">
     Confirmacion Password
 
-    <input type="password"
+    <div class="form-group">
+    <input class="form-control"
+            type="password"
             name="password_confirmation"
             value="{{old('password_confirmation')}}"
             > 
@@ -50,8 +61,11 @@
     <small style="color:red">{{$message}}</small>
     @enderror  
     
-</label><br>
-<label >
+</label>
+</div>
+
+<div class="form-group">
+<label class="col-lg-8 control-label" >
     Recuérdame
 
     <input type="checkbox"
@@ -64,22 +78,21 @@
     <small style="color:red">{{$message}}</small>
     @enderror  
     
-</label><br>
-
-<a href="{{route('registro')}}">Registro</a>
-    
-<div class="flex items-center justify-between">
-
-{{-- <a href="{{route('login')}}">REGISTRO</a> --}}
-    <button type="submit">LOGIN</button>
-
+</label>
 </div>
 
-</form><br>
+<a class="btn btn-info btn-sm" href="{{route('registro')}}">Registro</a>
+
+
+{{-- <a href="{{route('login')}}">REGISTRO</a> --}}
+    <button type="submit" class="btn btn-primary ">LOGIN</button>
 
 
 
+</form>
 
+</div>
+</div>
 
 
 </x-layouts.app>

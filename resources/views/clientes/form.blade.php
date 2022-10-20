@@ -1,7 +1,7 @@
 
 
 <div  class="mb-3">
-    <label for="" class="form-label">Name</label>
+    <label for="" class="form-label">Nombre</label>
     <input id="name"  name="name" type="text" class="form-control"  tabindex=1 value="{{old('name',$client->name)}}">
         @error('name')
         <br>

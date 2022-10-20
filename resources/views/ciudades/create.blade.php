@@ -3,18 +3,18 @@
 >
 
 
-<h1>Creacion de Ciudades</h1>
+<h1 style="margin-left:35%;margin-top: 50px">Creacion de Ciudades</h1>
 
 
-<form method="POST" action="{{route ('verification.notice')}}">
+<form style="margin-left: 40%; margin-right: 25% ;margin-top: 5%" method="POST" action="{{route ('verification.notice')}}">
     @csrf
 
 @include('ciudades.form')
 
-<button type="submit">Enviar</button>
+<a style="margin-left:10%" class="btn btn-light" href="{{route('ciudades.index')}}">REGRESAR</a> <br><br>
+
+<button style="margin-left:14%" class="btn btn-primary" type="submit">Enviar</button>
 
 </form><br>
-
-<a href="{{route('ciudades.index')}}">REGRESAR</a>
 
 </x-layouts.app>

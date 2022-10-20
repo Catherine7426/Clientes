@@ -2,17 +2,21 @@
     :title="$client->name" 
 >
 
-<h1>Editando Cliente {{$client->name}}</h1>
+<h1 style="margin-left:30%;margin-top: 50px">Editando Cliente {{$client->name}}</h1>
 
-<form method="POST" action="{{route ('clientes.update',$client)}}">
+<form style="margin-left: 25%; margin-right: 25% ;margin-top: 5%" method="POST" action="{{route ('clientes.update',$client)}}">
     @csrf 
     @method('PATCH')
 
 @include('clientes.form')
+<a  class="btn btn-light" href="{{route('clientes.index')}}">REGRESAR</a>
 
-<button class="btn btn-primary" type="submit">Enviar</button>
+<button style="margin-left:90%" class="btn btn-primary" type="submit">Enviar</button>
 
-</form><br>
-<a class="btn btn-secundary" href="{{route('clientes.index')}}">REGRESAR</a>
+
+
+</form>
+
+
 
 </x-layouts.app>
