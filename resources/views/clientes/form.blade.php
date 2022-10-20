@@ -1,28 +1,29 @@
-<label for="">
-    Name
-    <input name="name" type="text" value="{{old('name',$client->name)}}">
 
-    @error('name')
-    <br>
+
+<div  class="mb-3">
+    <label for="" class="form-label">Name</label>
+    <input id="name"  name="name" type="text" class="form-control"  tabindex=1 value="{{old('name',$client->name)}}">
+        @error('name')
+        <br>
         <small style="color:red">{{$message}}</small>
-    @enderror
-    
-</label> <br>
-<label for="">
-    Ciudad
+        @enderror
+</div>
 
-    
-    <select name="city_id" id="" >
-    
-
-        @foreach ($cities as $city)
+<div  class="mb-3">
+    <label for="" class="form-label">Ciudad</label>
+    <select class="form-select" name="city_id" id="" >
+    @foreach ($cities as $city)
         <option value="{{$city['id']}}" @if ($city->id == $client->city_id) selected @endif>{{$city['name']}}</option>
         @endforeach
         @error('city_id') 
         <br>
             <small style="color:red">{{$message}}</small>
         @enderror    
-        
     </select>
-    
-</label><br>
+</div>
+
+
+
+
+
+

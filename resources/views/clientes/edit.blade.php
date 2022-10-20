@@ -10,9 +10,9 @@
 
 @include('clientes.form')
 
-<button type="submit">Enviar</button>
+<button class="btn btn-primary" type="submit">Enviar</button>
 
 </form><br>
-<a href="{{route('clientes.index')}}">REGRESAR</a>
+<a class="btn btn-secundary" href="{{route('clientes.index')}}">REGRESAR</a>
 
 </x-layouts.app>

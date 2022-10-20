@@ -1,15 +1,19 @@
 <x-layouts.app
     title="Registro"
 >
-    <h1>Registrate</h1>
 
-    <form method="POST" action="{{route ('registro')}}">
+    <h1 style="margin-left:45%;margin-top: 50px" >Registrate</h1>
+
+    
+    <form class="form-floating" method="POST" action="{{route ('registro')}}">
     @csrf
 
-    <label >
+    <div class="form-floating mb-3 ">
+    <label for="floatingInputValue">
         Nombre
     
-        <input type="text"
+        <input  class="form-control" 
+                 type="text"
                 name="name"
                 value="{{old('name')}}"
                 > 
@@ -19,7 +23,8 @@
         <small style="color:red">{{$message}}</small>
         @enderror  
         
-    </label><br>
+    </label>
+    </div>
 
     
 
@@ -44,11 +49,12 @@
         @enderror  
         
     </label><br> --}}
-
+    <div class="form-floating mb-3 ">
     <label >
         Email
     
-        <input type="email"
+        <input class="form-control"
+                type="email"
                 name="email"
                 value="{{old('email')}}"
                 > 
@@ -58,11 +64,15 @@
         <small style="color:red">{{$message}}</small>
         @enderror  
         
-    </label><br>
-    <label >
+    </label>
+</div>
+
+<div class="form-floating mb-3 ">
+    <label>
         Password
     
-        <input type="password"
+        <input class="form-control"
+                type="password"
                 name="password"
                 value="{{old('password')}}"
                 > 
@@ -72,12 +82,16 @@
         <small style="color:red">{{$message}}</small>
         @enderror  
         
-    </label><br>
-</label><br>
-<label >
+    </label>
+
+</div>
+
+<div class="form-floating mb-3 ">
+<label  >
     Confirmacion Password
 
-    <input type="password"
+    <input class="form-control"
+            type="password"
             name="password_confirmation"
             value="{{old('password_confirmation')}}"
             > 
@@ -87,7 +101,10 @@
     <small style="color:red">{{$message}}</small>
     @enderror  
     
-</label><br>
+</label>
+</div>
+
+
 <a href="{{route('login')}}">Login</a>
     
 <div class="flex items-center justify-between">
@@ -97,7 +114,9 @@
 
 </div>
 
-</form><br>
+</form>
+
+
 
 
 

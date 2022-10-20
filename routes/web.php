@@ -30,6 +30,10 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 Route::view('/','home')-> middleware('auth')-> name('home');
 
+// Route::middleware(['auth:sanctum','verified'])->get('/home',function() {
+//     return view('home');
+// })->name('home');
+
 Route::get('/email/verify', function () {
     return view('home');
 })->middleware('auth')->name('verification.notice');
