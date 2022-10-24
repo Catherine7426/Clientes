@@ -6,7 +6,7 @@
 <h1 style="margin-left:35%;margin-top: 50px">Creacion de Ciudades</h1>
 
 
-<form style="margin-left: 40%; margin-right: 25% ;margin-top: 5%" method="POST" action="{{route ('verification.notice')}}">
+<form style="margin-left: 40%; margin-right: 25% ;margin-top: 5%" method="POST" action="{{route ('ciudades.store')}}">
     @csrf
 
 @include('ciudades.form')

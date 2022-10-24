@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SaveCityRequest;
 use App\Models\City;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -26,6 +27,7 @@ class CityController extends Controller
     public function index()
     {
         $cities = City::all();
+        $cities = City::paginate(5);
         
         return view ('ciudades.index', compact('cities'));
     }

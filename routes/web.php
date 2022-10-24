@@ -8,7 +8,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Mail\ContactanosMailable;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 
 /*
@@ -34,9 +34,9 @@ Route::view('/','home')-> middleware('auth')-> name('home');
 //     return view('home');
 // })->name('home');
 
-Route::get('/email/verify', function () {
-    return view('home');
-})->middleware('auth')->name('verification.notice');
+// Route::get('/email/verify', function () {
+//     return view('home');
+// })->middleware('auth')->name('verification.notice');
 
 // CLIENTES
 Route::get('/clientes',[ClientController::class,'index'])->name('clientes.index');

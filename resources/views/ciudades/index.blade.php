@@ -39,7 +39,7 @@ title="Ciudades"
     </tbody>
 </table>
 </div>
-
+{{$cities->links()}}
 
 </x-layouts.app>
 
