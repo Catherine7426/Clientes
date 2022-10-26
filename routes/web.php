@@ -8,7 +8,9 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Mail\ContactanosMailable;
 use Illuminate\Support\Facades\Mail;
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+
 
 
 /*
@@ -90,6 +92,8 @@ Route::get('contactanos', function () {
 
     return "Mensaje Enviado";
 })->name('contactanos.index');
+
+Route::get('register/verify/{password}',[AuthenticatedSessionController::class,'verify']);
 
 
 

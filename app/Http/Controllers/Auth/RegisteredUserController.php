@@ -9,36 +9,13 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\facades\Auth;
 
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function index(Request $request)
-    // {
-    //     $users = DB::table("users")->join("clients", "users.client_id", "=", "clients.id")->join("cities","clients.city_id", "=", "clients.id")->select("clients.name as client_name", "users.*","cities.name as city_name");
-    // }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-       // 
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
 
@@ -57,6 +34,11 @@ class RegisteredUserController extends Controller
             'password'=>bcrypt( $request->password),
         ]);
 
+        Mail::send('emails.confirmacion_codigo', $user, function($message) use($request){
+            $message->to ($request['email'])->subject('Por favor confirma tu correo ');
+        });
+
+
         event(new Registered($user));
 
         // return to_route('login')->with('status','Account created');
@@ -64,23 +46,7 @@ class RegisteredUserController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit($id)
     {
         //

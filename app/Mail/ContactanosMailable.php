@@ -30,6 +30,6 @@ class ContactanosMailable extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.contactanos');
+        return $this->view('emails.confirmacion_codigo');
     }
 }
