@@ -64,22 +64,7 @@
 </label>
 </div>
 
-<div class="form-group">
-<label class="col-lg-8 control-label" >
-    Recuérdame
-
-    <input type="checkbox"
-            name="remember"
-            
-            > 
-            
-    @error('password')
-    <br>
-    <small style="color:red">{{$message}}</small>
-    @enderror  
-    
-</label>
-</div>
+<a class="btn btn-info btn-sm" href="{{route('email')}}">Cambiar contraseña</a>
 
 <a class="btn btn-info btn-sm" href="{{route('registro')}}">Registro</a>
 

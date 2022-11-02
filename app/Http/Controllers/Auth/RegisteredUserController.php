@@ -11,15 +11,25 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\facades\Auth;
+use Illuminate\Support\Str;
+
+
+
+
+
 
 
 class RegisteredUserController extends Controller
 {
-    
-    public function store(Request $request)
+    //Muestra la vista de registro
+    public function registro()
+    {
+        return view('auth.register');
+    }
+
+    public function registrarse(Request $request)
     {
 
-        
         $request->validate([
             'name'=>['required','string','max:255'],
             // 'cliente'=>['required'],
@@ -27,51 +37,54 @@ class RegisteredUserController extends Controller
             'password'=>['required','string','min:6','confirmed',Rules\Password::defaults()]
         ]);//confirmed valida password_confirmation si es igual
 
+
+        //$confirmation_code= Str::random(25);
+
         $user=User::create([
             'name'=>$request->name,
             'email'=>$request->email,
             // 'cliente'=>$request->client_id,
             'password'=>bcrypt( $request->password),
+            'confirmation_code'=> $request->confirmation_code,
         ]);
 
-        Mail::send('emails.confirmacion_codigo', $user, function($message) use($request){
-            $message->to ($request['email'])->subject('Por favor confirma tu correo ');
-        });
+         event(new Registered($user));
+    
 
+        // Mail::send('emails.confirmation_code', ['confirmation_code' => $confirmation_code], function($message) use($request){
+        //  $message->to ($request->email,$request->name)->subject('Por favor confirma tu correo ');
+        //  });
 
-        event(new Registered($user));
+        // return $user;
+        //      //Login de usuario
+        // Auth::login($user);
 
-        // return to_route('login')->with('status','Account created');
-        return to_route('verification.notice');
+        // Redirección
+         //return redirect('login');
+
+        // event(new Registered($user));
+
+        // // return to_route('login')->with('status','Account created');
+        //return to_route('verification.notice');
 
     }
 
    
-    public function edit($id)
-    {
-        //
-    }
+    // public function verify($code)
+    // {
+    //     $user=User::where ('confirmation_code',$code)->first();
+        
+    //     if (!$user)
+    //     {
+    //         return redirect('/home');
+    //     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    //     $user->confirmed=true;
+    //     $user->confirmation_code=null; // elimina el codigo de confirmacion
+    //     $user->save();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    //     return redirect('/login')->with('estado','Has confirmado correctamente tu correo');
+    // }
+
+    
 }
