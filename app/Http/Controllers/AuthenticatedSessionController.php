@@ -21,7 +21,7 @@ class AuthenticatedSessionController extends Controller
 
     public function acceder (){
         if(Auth::check()){
-            return redirect('/home');
+            return redirect('home');
         }
         return view ('auth.login');
     }

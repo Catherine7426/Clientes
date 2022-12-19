@@ -7,20 +7,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ContactanosMailable extends Mailable implements ShouldQueue
+class ConfirmationMail extends Mailable
 {
     use Queueable, SerializesModels;
-
-    public $contacto ;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($contacto)
+    public function __construct()
     {
-        $this->contacto=$contacto;
+        //
     }
 
     /**
@@ -30,6 +28,6 @@ class ContactanosMailable extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->view('emails.contactanos');
+        return $this->view('emails.confirmation-code');
     }
 }

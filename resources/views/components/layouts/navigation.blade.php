@@ -17,7 +17,7 @@
         
 
         <li class="flex-sm-fill text-sm-center nav-link">
-            <a  style="color: aquamarine" class="nav-link" href="{{route('contactanos.index')}}">Contáctanos</a>
+             <a  style="color: aquamarine" class="nav-link" href="{{route('contacto.index')}}">Contáctanos</a> 
           </li>
 
         

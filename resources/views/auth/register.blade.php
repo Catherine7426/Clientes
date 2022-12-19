@@ -1,19 +1,20 @@
 <x-layouts.app
     title="Registro"
 >
+<div class="container">
+    <div class="abs-center">
+    <h1 style="margin-left:45%;margin-top: 50px" >Registrate</h1>
 
-    <h1 style="margin-left:45%;margin-top: 50px;margin-botton: 20px" >Registrate</h1>
-
-    <div class="container">
-    <form style="margin-left: 43%; margin-top: 5%"  method="POST" action="{{route ('registro')}}">
+ 
+    <form style="margin-left: 30%; margin-top: 5%"  method="POST" action="{{route ('registro')}}">
     @csrf
 
-    <div class=""mb-3"" >
-    <label class="form-label">
+    <div class="form-group" >
+    <label class="col-lg-8 control-label">
         Nombre
     
         <input  class="form-control" 
-                 type="text"
+                 type="name"
                 name="name"
                 value="{{old('name')}}"
                 > 
@@ -28,7 +29,7 @@
 
     
     <div class=""mb-3"">
-    <label class="form-label">
+    <label class="col-lg-8 control-label">
         Email
     
         <input class="form-control"
@@ -46,7 +47,7 @@
 </div>
 
 <div class=""mb-3"">
-    <label class="form-label">
+    <label class="col-lg-8 control-label">
         Password
     
         <input class="form-control"
@@ -65,7 +66,7 @@
 </div>
 
 <div class=""mb-3"">
-<label class="form-label"  >
+<label class="col-lg-8 control-label"  >
     Confirmacion Password
 
     <input class="form-control"

@@ -13,8 +13,6 @@ use Illuminate\Support\facades\Auth;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,7 +30,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
 
-Route::view('/','home')-> middleware('auth')-> name('home');
+Route::view('/','home')-> middleware(['auth', 'verified'])-> name('home');
 
 // Route::middleware(['auth:sanctum','verified'])->get('/home',function() {
 //     return view('home');
@@ -45,6 +43,7 @@ Route::view('/','home')-> middleware('auth')-> name('home');
 
 
 // CLIENTES
+Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/clientes',[ClientController::class,'index'])->name('clientes.index');
 Route::get('/clientes/create',[ClientController::class,'create'])->name('clientes.create');//Ruta para formulario
 Route::post('/clientes',[ClientController::class,'store'])->name('clientes.store');//Ruta para enviar datos a la BD
@@ -52,6 +51,7 @@ Route::get('/clientes/{client}',[ClientController::class,'show'])->name('cliente
 Route::get('/clientes/{client}/edit',[ClientController::class,'edit'])->name('clientes.edit');
 Route::patch('/clientes/{client}',[ClientController::class,'update'])->name('clientes.update');
 Route::delete('/clientes/{client}',[ClientController::class,'destroy'])->name('clientes.destroy');
+});
 
 // USUARIOS
 // Route::get('/usuarios',[UserController::class])->name('users');
@@ -69,6 +69,7 @@ Route::delete('/clientes/{client}',[ClientController::class,'destroy'])->name('c
 
 
 //CIUDADES
+Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/ciudades',[CityController::class,'index'])->name('ciudades.index');
 Route::get('/ciudades/create',[CityController::class,'create'])->name('ciudades.create');
 Route::post('/ciudades',[CityController::class,'store'])->name('ciudades.store');
@@ -76,12 +77,15 @@ Route::get('/ciudades/{city}',[CityController::class,'show'])->name('ciudades.sh
 Route::get('/ciudades/{city}/edit',[CityController::class,'edit'])->name('ciudades.edit');
 Route::patch('/ciudades/{city}',[CityController::class,'update'])->name('ciudades.update');
 Route::delete('/ciudades/{city}',[CityController::class,'destroy'])->name('ciudades.destroy');
+});
 
 
 // //LOGIN
+
  Route::get('/login',[AuthenticatedSessionController::class,'acceder'])->name('login');
  Route::post('/login',[AuthenticatedSessionController::class,'autenticar']);
  Route::post('/salir',[AuthenticatedSessionController::class,'salir'])->name('salir');
+
 
 
 // //REGISTRO
@@ -89,6 +93,7 @@ Route::delete('/ciudades/{city}',[CityController::class,'destroy'])->name('ciuda
 
 Route::get('/registro',[RegisteredUserController::class,'registro'])->name('registro');
 Route::post('/registro',[RegisteredUserController::class,'registrarse']);  
+
 
 // E-mail verification
 //Route::get('/register/verify/{code}', [RegisteredUserController::class,'verify']);
@@ -100,27 +105,35 @@ Route::post('enlace', [AuthenticatedSessionController::class, 'enlace'])->name('
 Route::get('clave/{token}', [AuthenticatedSessionController::class, 'clave'])->name('clave');
 Route::post('cambiar', [AuthenticatedSessionController::class, 'cambiar'])->name('cambiar');
 
-
+// EMAIL CONTACTO
+Route::get('/contacto',[RegisteredUserController::class,'index'])->name('contacto.index');
+Route::post('/contacto',[RegisteredUserController::class,'contacto'])->name('contactanos');
 
 //RUTA PARA EMAILS
- Route::get('contactanos', function () {
-     $correo = new ContactanosMailable;
-    Mail::to('catherinegiraldo7426@gmail.com')->send($correo);
+//  Route::get('contactanos', function () {
+//      $correo = new ContactanosMailable;
+//     Mail::to('catherinegiraldo7426@gmail.com')->send($correo);
 
-    return "Mensaje Enviado";
- })->name('contactanos.index');
+//     return "Mensaje Enviado";
+//  })->name('contactanos.index');
+
+// Route::get('contactanos', function () {
+//     $correo = new ContactanosMailable ("Juan");
+//     Mail::to('catherinegiraldo7426@gmail.com')->send($correo);
+
+//     return "Mensaje Enviado";
  
-// aviso de verificacion de correo electronico
- Route::get('/email/verify', function () {
-    return view('/verify');
-})->middleware('auth')->name('verification.notice');
+// }) ->name('contactanos.index');
+Route::middleware('auth')->group(function () {
+ 
+// AVISO DE VERIFICACION DE CORREO ELECTRONICO
+ Route::get('verify-email', [RegisteredUserController::class,'verification'])->name('verification.notice');
+    
 
 //CONTROLADOR DE VERIFICACION DE CORREO ELECTRONICO
- Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-     $request->fulfill();
- 
-     return to_route('home')->with('estado','Te has registrado correctamente. Bienvenido');
- })->middleware(['auth', 'signed'])->name('verification.verify');
+ Route::get('verify-email/{id}/{hash}',[RegisteredUserController::class,'control']) ->middleware( 'signed')->name('verification.verify');
+
+});
 
 
 

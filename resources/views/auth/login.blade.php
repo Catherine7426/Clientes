@@ -64,7 +64,7 @@
 </label>
 </div>
 
-<a class="btn btn-info btn-sm" href="{{route('email')}}">Cambiar contraseña</a>
+{{-- <a class="btn btn-info btn-sm" href="{{route('email')}}">Cambiar contraseña</a> --}}
 
 <a class="btn btn-info btn-sm" href="{{route('registro')}}">Registro</a>
 
